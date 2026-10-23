@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* Exact font stacks measured from the original app */
+@theme {
+  --font-roboto: "Roboto", sans-serif;
+  --font-inter: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-roboto);
+  background-color: #0a101c;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Measured component styles (values from gatishkti.netlify.app) --- */
+
+/* Glass panel: rgba(15,23,42,.6) + 0.8px rgba(79,172,254,.3) border, radius 8 */
+.glass {
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 0.8px solid rgba(79, 172, 254, 0.3);
+  border-radius: 8px;
+}
+
+/* Dashboard select/input: Inter 16px, height 46, padding 10px 15px */
+.control {
+  height: 46px;
+  padding: 10px 15px;
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 0.8px solid rgba(79, 172, 254, 0.3);
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-inter);
+  font-size: 16px;
+  line-height: 24px;
+}
+.control:focus {
+  outline: none;
+  border-color: rgba(0, 242, 254, 0.6);
+}
+
+/* Small uppercase labels: Inter 12.8px / 700 / 1px tracking, white */
+.field-label {
+  font-family: var(--font-inter);
+  font-size: 12.8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Gradient Run Check button */
+.run-check {
+  height: 54px;
+  border: 0;
+  border-radius: 8px;
+  background-image: linear-gradient(90deg, #4facfe, #00f2fe);
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+  color: #0f172a;
+  font-family: var(--font-inter);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.run-check:hover {
+  filter: brightness(1.1);
+}
+.run-check:active {
+  filter: brightness(0.95);
+}
+
+/* Template value pills: 13.6px/600, radius 20, right-aligned */
+.pill {
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 13.6px;
+  font-weight: 600;
+  line-height: 20.4px;
+  text-align: right;
+  display: inline-block;
+}
+.pill-matched {
+  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+.pill-missing {
+  color: #f87171;
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+/* Cyan outline icon button (hamburger / download) */
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0dcaf0;
+  border: 0.8px solid #0dcaf0;
+  border-radius: 8px;
+  padding: 6px;
+  background: transparent;
+}
+.icon-btn:hover {
+  background-color: rgba(13, 202, 240, 0.1);
+}
+.icon-btn:disabled {
+  opacity: 0.65;
+}
+
+/* Gradient glowing page titles: Inter 800, 2px tracking */
+.page-title {
+  font-family: var(--font-inter);
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  color: #e2e8f0;
+  text-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+}
+.page-title > span {
+  background-image: linear-gradient(90deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
