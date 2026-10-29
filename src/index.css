@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
-/* Exact font stacks measured from the original app */
+/* Fonts (bundled via @fontsource, imported in main.jsx) */
 @theme {
   --font-roboto: "Roboto", sans-serif;
   --font-inter: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  /* Signature accent ramp: cyan → blue */
+  --accent: #22d3ee;
+  --accent-2: #3b82f6;
+  --line-soft: rgba(125, 180, 255, 0.13);
+  --panel-radius: 16px;
 }
 
 html {
@@ -13,119 +21,240 @@ html {
 body {
   margin: 0;
   font-family: var(--font-roboto);
-  background-color: #0a101c;
+  background-color: #05070d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Measured component styles (values from gatishkti.netlify.app) --- */
-
-/* Glass panel: rgba(15,23,42,.6) + 0.8px rgba(79,172,254,.3) border, radius 8 */
-.glass {
-  background-color: rgba(15, 23, 42, 0.6);
-  border: 0.8px solid rgba(79, 172, 254, 0.3);
-  border-radius: 8px;
+::selection {
+  background: rgba(34, 211, 238, 0.32);
 }
 
-/* Dashboard select/input: Inter 16px, height 46, padding 10px 15px */
+/* ---------- Aurora shell backdrop (class on page root) ---------- */
+.shell-bg {
+  background-image:
+    radial-gradient(1000px 520px at 10% -12%, rgba(34, 211, 238, 0.14), transparent 62%),
+    radial-gradient(1250px 640px at 106% 6%, rgba(59, 130, 246, 0.13), transparent 62%),
+    radial-gradient(900px 560px at 50% 122%, rgba(124, 58, 237, 0.11), transparent 65%),
+    linear-gradient(180deg, #070b14, #0a101d 55%, #080d18);
+  background-attachment: fixed;
+}
+/* faint technical grid, fading out toward the bottom */
+.shell-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(ellipse 92% 68% at 50% 0%, black 26%, transparent 76%);
+  mask-image: radial-gradient(ellipse 92% 68% at 50% 0%, black 26%, transparent 76%);
+}
+
+/* ---------- Scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.26);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+  background-clip: content-box;
+  border: 2px solid transparent;
+}
+
+/* ---------- Panels ---------- */
+.glass {
+  background: linear-gradient(160deg, rgba(21, 31, 54, 0.85), rgba(10, 16, 29, 0.92));
+  border: 1px solid var(--line-soft);
+  border-radius: var(--panel-radius);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 26px 60px -38px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(14px);
+}
+
+/* ---------- Form controls ---------- */
 .control {
   height: 46px;
-  padding: 10px 15px;
-  background-color: rgba(15, 23, 42, 0.6);
-  border: 0.8px solid rgba(79, 172, 254, 0.3);
-  border-radius: 8px;
-  color: rgb(255, 255, 255);
+  padding: 0 15px;
+  background: rgba(4, 10, 22, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 10px;
+  color: #ffffff;
   font-family: var(--font-inter);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 24px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+.control:hover {
+  border-color: rgba(125, 211, 252, 0.35);
 }
 .control:focus {
   outline: none;
-  border-color: rgba(0, 242, 254, 0.6);
+  border-color: rgba(34, 211, 238, 0.75);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.16), 0 10px 24px -14px rgba(34, 211, 238, 0.55);
 }
 
-/* Small uppercase labels: Inter 12.8px / 700 / 1px tracking, white */
+/* Small uppercase labels with accent tick */
 .field-label {
   font-family: var(--font-inter);
-  font-size: 12.8px;
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #8fd6ff;
+}
+.field-label::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  margin-right: 8px;
+  vertical-align: middle;
+  transform: translateY(-1px);
 }
 
-/* Gradient Run Check button */
+/* ---------- Run Check button ---------- */
 .run-check {
   height: 54px;
   border: 0;
-  border-radius: 8px;
-  background-image: linear-gradient(90deg, #4facfe, #00f2fe);
-  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
-  color: #0f172a;
+  border-radius: 12px;
+  background-image: linear-gradient(135deg, #14dfef 0%, #3d7dfd 62%, #8b5cf6 118%);
+  background-size: 115% 100%;
+  box-shadow:
+    0 14px 34px -14px rgba(34, 211, 238, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: #04101f;
   font-family: var(--font-inter);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
 }
 .run-check:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.07) saturate(1.06);
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 42px -14px rgba(34, 211, 238, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 .run-check:active {
-  filter: brightness(0.95);
+  transform: translateY(0);
+  filter: brightness(0.96);
 }
 
-/* Template value pills: 13.6px/600, radius 20, right-aligned */
+/* ---------- Value pills ---------- */
 .pill {
-  border-radius: 20px;
-  padding: 4px 10px;
+  border-radius: 999px;
+  padding: 5px 12px;
   font-size: 13.6px;
   font-weight: 600;
   line-height: 20.4px;
   text-align: right;
   display: inline-block;
+  transition: transform 0.15s ease;
 }
 .pill-matched {
-  color: #10b981;
-  background-color: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.35);
 }
 .pill-missing {
-  color: #f87171;
-  background-color: rgba(239, 68, 68, 0.15);
+  color: #fb7185;
+  background-color: rgba(244, 63, 94, 0.13);
+  border: 1px solid rgba(251, 113, 133, 0.35);
 }
 
-/* Cyan outline icon button (hamburger / download) */
+/* ---------- Icon buttons ---------- */
 .icon-btn {
   width: 48px;
   height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #0dcaf0;
-  border: 0.8px solid #0dcaf0;
-  border-radius: 8px;
+  color: #6ee7f9;
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  border-radius: 12px;
   padding: 6px;
-  background: transparent;
+  background: rgba(34, 211, 238, 0.05);
+  transition: background-color 0.16s ease, box-shadow 0.16s ease, color 0.16s ease;
 }
 .icon-btn:hover {
-  background-color: rgba(13, 202, 240, 0.1);
+  background-color: rgba(34, 211, 238, 0.14);
+  color: #a5f3fc;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
 }
 .icon-btn:disabled {
   opacity: 0.65;
 }
 
-/* Gradient glowing page titles: Inter 800, 2px tracking */
+/* ---------- Small ghost icon button (card headers) ---------- */
+.ghost-btn {
+  height: 36px;
+  width: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #67e8f9;
+  transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease;
+}
+.ghost-btn:hover {
+  border-color: rgba(103, 232, 249, 0.4);
+  background: rgba(34, 211, 238, 0.1);
+  color: #a5f3fc;
+}
+
+/* ---------- Meta chip ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 180, 255, 0.18);
+  background: rgba(10, 17, 32, 0.6);
+  color: #9fb6d9;
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+/* ---------- Gradient glowing page titles ---------- */
 .page-title {
   font-family: var(--font-inter);
   font-weight: 800;
-  letter-spacing: 2px;
-  line-height: 1.2;
+  letter-spacing: 1.5px;
+  line-height: 1.25;
   color: #e2e8f0;
-  text-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
 }
 .page-title > span {
-  background-image: linear-gradient(90deg, #00f2fe, #4facfe);
+  background-image: linear-gradient(90deg, #22ddff, #4f8bff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.35));
 }

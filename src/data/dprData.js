@@ -25,12 +25,12 @@ export const SOR_VIEW_LABELS = {
 export const SOR_COLUMNS_MAIN = [
   { field: "id", header: "ID", width: 70 },
   { field: "Match_Key", header: "MATCH_KEY", width: 150 },
-  { field: "Quantity", header: "QUANTITY", width: 150 },
-  { field: "Estimated_Cost", header: "ESTIMATED_COST", width: 170 },
-  { field: "Rate", header: "SOR_RATE", width: 150 },
-  { field: "Dpr_Rate", header: "DPR_RATE", width: 150 },
-  { field: "Expected_Cost", header: "EXPECTED_COST", width: 150 },
-  { field: "Discrepancy_Percent", header: "DISCREPANCY %", width: 180 },
+  { field: "Quantity", header: "QUANTITY", width: 150, align: "right" },
+  { field: "Estimated_Cost", header: "ESTIMATED_COST", width: 170, align: "right" },
+  { field: "Rate", header: "SOR_RATE", width: 150, align: "right" },
+  { field: "Dpr_Rate", header: "DPR_RATE", width: 150, align: "right" },
+  { field: "Expected_Cost", header: "EXPECTED_COST", width: 150, align: "right" },
+  { field: "Discrepancy_Percent", header: "DISCREPANCY %", width: 180, align: "right" },
   { field: "Unit", header: "UNIT", width: 150 },
   { field: "Compliance", header: "STATUS", width: 150 },
 ];
@@ -38,8 +38,8 @@ export const SOR_COLUMNS_MAIN = [
 export const SOR_COLUMNS_UNMATCHED = [
   { field: "id", header: "ID", width: 70 },
   { field: "Match_Key", header: "MATCHED KEY", width: 150 },
-  { field: "Quantity", header: "QUANTITY", width: 150 },
-  { field: "Estimated_Cost", header: "ESTIMATED COST", width: 170 },
+  { field: "Quantity", header: "QUANTITY", width: 150, align: "right" },
+  { field: "Estimated_Cost", header: "ESTIMATED COST", width: 170, align: "right" },
   { field: "Unit", header: "UNIT", width: 150 },
 ];
 

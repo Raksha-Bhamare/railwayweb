@@ -1,11 +1,9 @@
 import { ChevronDownIcon } from "./icons";
 
-const labelClass = "field-label mb-2.5 block";
-
 function SelectField({ label, id, value, onChange, options }) {
   return (
-    <div className="mb-6">
-      <label htmlFor={id} className={labelClass}>
+    <div>
+      <label htmlFor={id} className="field-label mb-2.5 block">
         {label}
       </label>
       <div className="relative">
@@ -21,7 +19,7 @@ function SelectField({ label, id, value, onChange, options }) {
             </option>
           ))}
         </select>
-        <ChevronDownIcon className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#343a40]" />
+        <ChevronDownIcon className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
       </div>
     </div>
   );
@@ -40,7 +38,18 @@ export default function CheckPanel({
   showControls = true,
 }) {
   return (
-    <section className="glass p-6 sm:p-7">
+    <section className="glass px-6 py-6 sm:px-8 sm:py-7">
+      {/* Panel heading */}
+      <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex h-2.5 w-2.5 rounded-full bg-gradient-to-br from-cyan-300 to-blue-500 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+          <h2 className="text-[15px] font-extrabold uppercase tracking-[0.14em] text-white">
+            Check Configuration
+          </h2>
+        </div>
+        <span className="chip hidden sm:inline-flex">Discrepancy % ≤ Tolerance</span>
+      </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -48,27 +57,27 @@ export default function CheckPanel({
         }}
         noValidate
       >
-        <SelectField
-          label="Select DPR"
-          id="dpr"
-          value={dpr}
-          onChange={onDpr}
-          options={dprs.map((label) => ({ value: label, label }))}
-        />
+        <div className="grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+          <SelectField
+            label="Select DPR"
+            id="dpr"
+            value={dpr}
+            onChange={onDpr}
+            options={dprs.map((label) => ({ value: label, label }))}
+          />
 
-        <SelectField
-          label="Item Type"
-          id="item-type"
-          value={itemTypeValue}
-          onChange={onItemType}
-          options={itemTypes.map(({ value, label }) => ({ value, label }))}
-        />
+          <SelectField
+            label="Item Type"
+            id="item-type"
+            value={itemTypeValue}
+            onChange={onItemType}
+            options={itemTypes.map(({ value, label }) => ({ value, label }))}
+          />
 
-        {/* The original hides tolerance + RUN CHECK when "Unmatched Items" is selected */}
-        {showControls && (
-          <>
-            <div className="mb-7">
-              <label htmlFor="tolerance" className={labelClass}>
+          {/* The original hides tolerance + RUN CHECK when "Unmatched Items" is selected */}
+          {showControls && (
+            <div>
+              <label htmlFor="tolerance" className="field-label mb-2.5 block">
                 Tolerance %
               </label>
               <input
@@ -81,11 +90,13 @@ export default function CheckPanel({
                 className="control w-full placeholder:text-slate-500"
               />
             </div>
+          )}
+        </div>
 
-            <button type="submit" className="run-check w-full">
-              Run Check
-            </button>
-          </>
+        {showControls && (
+          <button type="submit" className="run-check mt-6 w-full">
+            Run Check
+          </button>
         )}
       </form>
     </section>
