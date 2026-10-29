@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { HamburgerButton, AiensuredLogo, Shell, PageContainer } from "./shared";
+import { HamburgerButton, AiensuredLogo, GlowTitle, Shell, PageContainer, DashboardHeader } from "./shared";
 import { useUi } from "../context/UiContext";
 import {
   SOR_PREFIX,
@@ -35,7 +35,12 @@ function mapMainRow(record, index) {
     String(index + 1),
     record.Match_Key || "N/A",
     record.Quantity != null ? String(record.Quantity) : "null",
-    est ? `${est.toLocaleString()}` : "N/A",
+    est
+      ? `₹${Number(strip(est)).toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}`
+      : "N/A",
     rate,
     qty > 0 && est ? (parseFloat(strip(est)) / qty).toFixed(2) : "N/A",
     record.Expected_Cost?.toLocaleString() || "N/A",
@@ -52,7 +57,10 @@ function mapUnmatchedRow(record, index) {
     String(index + 1),
     record.Match_Key || "null",
     record.Quantity != null ? String(record.Quantity) : "null",
-    est ? `₹${Number(est).toLocaleString()}` : "N/A",
+    est ? `₹${Number(strip(est)).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}` : "N/A",
     record.Unit || "N/A",
   ];
 }
@@ -137,15 +145,16 @@ export default function SorCheck() {
   return (
     <Shell className="font-inter">
       <PageContainer>
-        <header className="flex items-center gap-4 sm:gap-6">
-          <HamburgerButton onClick={openDrawer} />
-          <h1 className="page-title min-w-0 flex-1 truncate text-left text-[24px]">
-            <span>MALKANGIRI-BHADRACHALAM-{suffix}</span>
-          </h1>
-          <AiensuredLogo className="h-[45px] w-[150px]" />
-        </header>
+        <DashboardHeader
+          left={<HamburgerButton onClick={openDrawer} />}
+          right={<AiensuredLogo className="h-[45px] w-[150px]" />}
+        >
+          <GlowTitle className="text-[28px] max-w-[min(64%,720px)]">
+            MALKANGIRI-BHADRACHALAM-{suffix}
+          </GlowTitle>
+        </DashboardHeader>
 
-        <main className="mt-8 space-y-6 pb-12">
+        <main className="mt-8 grid items-start gap-6 pb-12 lg:grid-cols-[288px_minmax(0,1fr)]">
           <CheckPanel
             dprs={SOR_DPRS}
             dpr={dpr}

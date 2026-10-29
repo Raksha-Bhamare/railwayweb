@@ -29,7 +29,7 @@ export const SOR_COLUMNS_MAIN = [
   { field: "Estimated_Cost", header: "ESTIMATED_COST", width: 170 },
   { field: "Rate", header: "SOR_RATE", width: 150 },
   { field: "Dpr_Rate", header: "DPR_RATE", width: 150 },
-  { field: "Expected_Cost", header: "EXPECTED_COST", width: 150 },
+  { field: "Expected_Cost", header: "EXPECTED_COST", width: 200 },
   { field: "Discrepancy_Percent", header: "DISCREPANCY %", width: 180 },
   { field: "Unit", header: "UNIT", width: 150 },
   { field: "Compliance", header: "STATUS", width: 150 },

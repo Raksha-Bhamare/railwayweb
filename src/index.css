@@ -75,13 +75,13 @@ body {
   filter: brightness(0.95);
 }
 
-/* Template value pills: 13.6px/600, radius 20, right-aligned */
+/* Template value pills: 15.6px/600, radius 20, right-aligned */
 .pill {
   border-radius: 20px;
-  padding: 4px 10px;
-  font-size: 13.6px;
+  padding: 7px 14px;
+  font-size: 15.6px;
   font-weight: 600;
-  line-height: 20.4px;
+  line-height: 1.4;
   text-align: right;
   display: inline-block;
 }

@@ -40,7 +40,7 @@ export default function CheckPanel({
   showControls = true,
 }) {
   return (
-    <section className="glass p-6 sm:p-7">
+    <section className="glass p-6 lg:self-start">
       <form
         onSubmit={(e) => {
           e.preventDefault();

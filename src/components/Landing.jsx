@@ -44,7 +44,7 @@ export default function Landing() {
           <img
             src="/assets/rail-logo.png"
             alt="Indian Railways"
-            className="h-[113px] w-[150px] shrink-0"
+            className="h-[150px] w-auto shrink-0"
           />
         </div>
 
@@ -55,26 +55,26 @@ export default function Landing() {
           </span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-[456px] text-center text-[16px] font-light leading-[24px] text-[#f8f9fa]">
+        <p className="mx-auto mt-6 max-w-[900px] text-center text-[16px] font-light leading-[24px] text-[#f8f9fa]">
           We specialize in delivering cutting-edge solutions for the railway industry.
           Explore our modules to learn more about our innovative responsible AI product
           services.
         </p>
 
-        <h1 className="mt-16 text-center text-[36px] font-bold leading-[1.2] text-white">
+        <h1 className="mt-20 text-center text-[36px] font-bold leading-[1.2] text-white">
           Select a Module
         </h1>
 
-        <div className="mx-auto mt-10 grid max-w-[700px] grid-cols-1 gap-6 pb-20 sm:grid-cols-2">
+        <div className="mx-auto mt-14 grid max-w-[1620px] grid-cols-1 gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-4">
           {MODULES.map(({ title, desc, path, Icon }) => (
             <button
               key={path}
               type="button"
               onClick={() => navigate(path)}
-              className="group rounded-md bg-white p-4 text-left shadow-[0_4px_14px_rgba(2,6,23,0.4)] transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c4136b]/60"
+              className="group rounded-lg bg-white p-6 text-left shadow-[0_4px_14px_rgba(2,6,23,0.4)] transition hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c4136b]/60"
             >
               <Icon className="h-12 w-12 text-[#c4136b]" />
-              <div className="mt-7 text-[20px] font-medium leading-[24px] text-[#212529]">
+              <div className="mt-6 text-[20px] font-medium leading-[26px] text-[#212529]">
                 {title}
               </div>
               <p className="mt-2 text-[16px] leading-[24px] text-[#212529]">{desc}</p>

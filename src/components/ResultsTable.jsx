@@ -16,8 +16,8 @@ export default function ResultsTable({ view, columns, rows = [] }) {
 
   return (
     <section className="glass overflow-hidden">
-      <div className="flex items-center justify-between gap-4 px-6 py-5">
-        <h2 className="text-base font-extrabold uppercase tracking-[0.08em] text-white sm:text-lg">
+      <div className="flex items-center justify-between gap-4 px-7 py-6">
+        <h2 className="text-[22px] font-extrabold tracking-[0.06em] text-white sm:text-[24px]">
           {view}
         </h2>
         <div className="flex items-center gap-4">
@@ -43,7 +43,7 @@ export default function ResultsTable({ view, columns, rows = [] }) {
         <div className="h-full overflow-auto">
           {/* border-separate so the sticky header keeps its borders; exact DataGrid column widths (70/150/…), cells clip with ellipsis */}
           <table
-            className="border-separate border-spacing-0 text-left text-[13px]"
+            className="border-separate border-spacing-0 text-left text-[15px]"
             style={{ tableLayout: "fixed", width: columns.reduce((sum, c) => sum + (c.width || 150), 0) }}
           >
             <thead>
@@ -52,8 +52,8 @@ export default function ResultsTable({ view, columns, rows = [] }) {
                   <th
                     key={column.field}
                     style={{ width: column.width }}
-                    className={`sticky top-0 z-10 overflow-hidden border-b border-slate-300/40 bg-[#0e1726] text-ellipsis whitespace-nowrap py-3.5 pr-6 font-bold tracking-wide text-[#4facfe] ${
-                      index === 0 ? "pl-6" : "border-l border-slate-500/40 pl-4"
+                    className={`sticky top-0 z-10 overflow-hidden border-b border-slate-300/40 bg-[#0e1726] text-ellipsis whitespace-nowrap py-4 pr-3 font-bold text-[#4facfe] ${
+                      index === 0 ? "pl-6" : "border-l border-white/10 pl-4"
                     }`}
                   >
                     {column.header}
@@ -66,14 +66,14 @@ export default function ResultsTable({ view, columns, rows = [] }) {
                 {rows.map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    className={`transition-colors ${rowIndex % 2 === 1 ? "bg-slate-800/30" : "hover:bg-slate-700/20"}`}
+                    className={`transition-colors ${rowIndex % 2 === 1 ? "bg-slate-800/25" : "hover:bg-slate-700/20"}`}
                   >
                     {row.map((cell, colIndex) => (
                       <td
                         key={colIndex}
                         style={{ width: columns[colIndex]?.width }}
-                        className={`border-b border-slate-700/40 overflow-hidden text-ellipsis whitespace-nowrap py-3 pr-6 align-middle text-slate-100 ${
-                          colIndex === 0 ? "pl-6 text-slate-400" : "pl-4"
+                        className={`border-b border-white/10 overflow-hidden text-ellipsis whitespace-nowrap py-[17px] pr-6 align-middle text-[#2ea37a] ${
+                          colIndex === 0 ? "pl-6" : "border-l border-white/10 pl-4"
                         }`}
                       >
                         {cell}
@@ -88,7 +88,7 @@ export default function ResultsTable({ view, columns, rows = [] }) {
 
         {/* Measured empty state: rgba(255,255,255,.38) overlay, #cbd5e1 14px text */}
         {rows.length === 0 && (
-          <div className="absolute inset-x-0 bottom-0 top-[46px] flex items-center justify-center bg-white/[0.38]">
+          <div className="absolute inset-x-0 bottom-0 top-[57px] flex items-center justify-center bg-white/[0.38]">
             <span className="text-[14px] font-normal tracking-[0.15px] text-[#cbd5e1]">
               No rows
             </span>
