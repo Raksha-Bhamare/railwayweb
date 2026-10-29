@@ -42,7 +42,7 @@ export default function PptViewer() {
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
-                className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#343a40]"
                 aria-hidden="true"
               >
                 <path
@@ -61,8 +61,8 @@ export default function PptViewer() {
         </header>
 
         <main className="mt-8 flex flex-col gap-6 pb-12 lg:flex-row">
-          <aside className="w-full shrink-0 self-start rounded-xl border border-white/10 bg-[#0a1120]/70 p-2 backdrop-blur max-h-[640px] overflow-y-auto lg:w-[176px]">
-            <div className="px-2 pb-3 pt-2 text-[13px] font-extrabold uppercase tracking-[0.14em] text-slate-400">Slides</div>
+          <aside className="w-full shrink-0 self-start rounded-md bg-[#161b26] p-2 max-h-[640px] overflow-y-auto lg:w-[176px]">
+            <div className="px-2 py-2 text-[15px] font-semibold text-slate-100">Slides</div>
             {slides.map((s, index) => (
               <button
                 key={s.title}
@@ -70,8 +70,8 @@ export default function PptViewer() {
                 onClick={() => setSlideIndex(index)}
                 className={`mb-2 block w-full rounded-lg px-2.5 py-2.5 text-left transition ${
                   index === slideIndex
-                    ? "bg-gradient-to-r from-cyan-400/20 to-blue-500/15 text-white ring-1 ring-inset ring-cyan-300/30"
-                    : "bg-white/[0.03] text-slate-200 hover:bg-white/[0.08]"
+                    ? "bg-[#d63384]/85 text-white"
+                    : "bg-[#232833] text-slate-200 hover:bg-[#2b3140]"
                 }`}
               >
                 <div className="text-[13px] font-medium leading-snug">{s.title}</div>
@@ -80,7 +80,7 @@ export default function PptViewer() {
             ))}
           </aside>
 
-          <article className="min-h-[529px] flex-1 rounded-xl bg-white p-4 text-[#212529] shadow-[0_40px_80px_-35px_rgba(2,8,20,0.9)] sm:p-6">
+          <article className="min-h-[529px] flex-1 rounded-lg bg-white p-4 text-[#212529] shadow-xl sm:p-6">
             <h2 className="text-center text-[28px] font-bold leading-tight">{slide?.title}</h2>
             <ul className="mt-8 list-disc space-y-5 pl-6 text-[16px] leading-relaxed">
               {slide?.bullets.map((bullet) => (
@@ -90,16 +90,13 @@ export default function PptViewer() {
           </article>
         </main>
 
-        <div className="flex items-center justify-center gap-4 pb-8">
-          <span className="chip tabular-nums">
-            {slideIndex + 1} / {slides.length}
-          </span>
+        <div className="flex justify-center gap-4 pb-8">
           <button
             type="button"
             aria-label="Previous slide"
             disabled={slideIndex === 0}
             onClick={() => setSlideIndex((i) => Math.max(0, i - 1))}
-            className="flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-white transition enabled:hover:border-cyan-300/40 enabled:hover:bg-white/[0.1] disabled:opacity-40"
+            className="flex items-center justify-center rounded-lg bg-[#6c757d] px-4 py-2 text-white transition enabled:hover:bg-[#5a6268] disabled:opacity-65"
           >
             <ChevronLeftIcon className="h-5 w-5" />
           </button>
@@ -108,7 +105,7 @@ export default function PptViewer() {
             aria-label="Next slide"
             disabled={slideIndex >= slides.length - 1}
             onClick={() => setSlideIndex((i) => Math.min(slides.length - 1, i + 1))}
-            className="flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-white transition enabled:hover:border-cyan-300/40 enabled:hover:bg-white/[0.1] disabled:opacity-40"
+            className="flex items-center justify-center rounded-lg bg-[#6c757d] px-4 py-2 text-white transition enabled:hover:bg-[#5a6268] disabled:opacity-65"
           >
             <ChevronRightIcon className="h-5 w-5" />
           </button>

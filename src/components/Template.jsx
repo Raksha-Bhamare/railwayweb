@@ -34,7 +34,7 @@ export default function TemplatePage() {
                 </option>
               ))}
             </select>
-            <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#343a40]" />
           </div>
 
           <GlowTitle className="order-last min-w-0 flex-1 basis-full text-[32px] sm:order-none sm:basis-auto">
@@ -51,20 +51,17 @@ export default function TemplatePage() {
               <span>Template Matched</span>
             </h3>
 
-            <div className="mt-6 rounded-xl border border-white/10 bg-[#0a1120]/70 p-4 sm:p-6">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2.5 text-[15px] font-bold text-[#67e8f9]">
-                <span>matched</span>
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-300/80">
-                  {TEMPLATE_MATCHED.length} fields
-                </span>
+            <div className="mt-6 rounded-lg border border-[#4facfe]/20 bg-[#0b1425]/80 p-4 sm:p-6">
+              <div className="border-b border-slate-600/50 pb-2 text-[16px] font-bold text-[#0dcaf0]">
+                matched
               </div>
               <ul>
                 {TEMPLATE_MATCHED.map(([name, value]) => (
                   <li
                     key={name}
-                    className="flex flex-col gap-3 rounded-lg border-b border-white/5 px-2 py-4 transition last:border-0 hover:bg-white/[0.03] sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+                    className="flex flex-col gap-3 border-b border-slate-700/40 py-4 last:border-0 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
                   >
-                    <span className="text-[15.2px] font-medium leading-[1.5] text-slate-300 sm:max-w-[460px]">
+                    <span className="text-[15.2px] font-medium leading-[1.5] text-[#cbd5e1] sm:max-w-[460px]">
                       {name}
                     </span>
                     <span className="pill pill-matched sm:w-[374px]">{value}</span>
@@ -80,20 +77,17 @@ export default function TemplatePage() {
               <span>Template Missing</span>
             </h3>
 
-            <div className="mt-6 rounded-xl border border-white/10 bg-[#0a1120]/70 p-4 sm:p-6">
-              <div className="flex items-center justify-between border-b border-white/10 pb-2.5 text-[15px] font-bold text-[#67e8f9]">
-                <span>missing</span>
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-rose-300/80">
-                  {TEMPLATE_MISSING.length} fields
-                </span>
+            <div className="mt-6 rounded-lg border border-[#4facfe]/20 bg-[#0b1425]/80 p-4 sm:p-6">
+              <div className="border-b border-slate-600/50 pb-2 text-[16px] font-bold text-[#4facfe]">
+                missing
               </div>
               <ul>
                 {TEMPLATE_MISSING.map((name) => (
                   <li
                     key={name}
-                    className="flex flex-col gap-3 rounded-lg border-b border-white/5 px-2 py-4 transition last:border-0 hover:bg-white/[0.03] sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+                    className="flex flex-col gap-3 border-b border-slate-700/40 py-4 last:border-0 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
                   >
-                    <span className="text-[15.2px] font-medium leading-[1.5] text-slate-300 sm:max-w-[460px]">
+                    <span className="text-[15.2px] font-medium leading-[1.5] text-[#cbd5e1] sm:max-w-[460px]">
                       {name}
                     </span>
                     <span className="pill pill-missing sm:w-[374px]">Missing</span>

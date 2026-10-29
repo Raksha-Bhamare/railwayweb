@@ -3,7 +3,7 @@ import { MenuIcon } from "./icons";
 export function Shell({ children, className = "" }) {
   return (
     <div
-      className={`shell-bg relative min-h-screen overflow-x-clip font-roboto text-slate-100 ${className}`}
+      className={`min-h-screen bg-gradient-to-br from-[#0a101c] via-[#0e1524] to-[#151b31] text-slate-100 font-roboto ${className}`}
     >
       {children}
     </div>
